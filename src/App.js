@@ -1,5 +1,6 @@
 //import logo from './logo.svg';
 import './App.css';
+import CreateEmployeeComponent from './components/CreateEmployeeComponent';
 import FooterComponent from './components/FooterComponent';
 import HeaderComponent from './components/HeaderComponent';
 import ListEmployeeComponent from './components/ListEmployeeComponent';
@@ -12,8 +13,9 @@ function App() {
           <HeaderComponent />
           <div className="container">
             <Routes>
-              <Route path='/' element={<ListEmployeeComponent/>} />
+              <Route path='/' exact element={<ListEmployeeComponent/>} />
               <Route path='/employees' element={<ListEmployeeComponent/>} /> 
+              <Route path='/add-employee' element={<CreateEmployeeComponent/>} />
             </Routes>    
           </div>
           <FooterComponent />        

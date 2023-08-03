@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import EmployeeService from '../services/EmployeeService';
+import { useNavigate } from 'react-router-dom';
+
+
 
 class ListEmployeeComponent extends Component {
     constructor(props){
@@ -7,6 +10,10 @@ class ListEmployeeComponent extends Component {
         this.state={
             employees: []
         }
+        const { navigate } = this.props;
+
+        this.addEmployee=this.addEmployee.bind(this);
+       
     }
 
     componentDidMount(){
@@ -15,10 +22,19 @@ class ListEmployeeComponent extends Component {
 
         });
     }
+
+    addEmployee(){
+        
+        this.props.navigate('/add-employee');
+    }
+    
     render() {
         return (
             <div>
                 <h2 className='text-center'>Employees List</h2>
+                <div className="row">
+                    <button className="btn btn-primary btn-sm mb-3" onClick={this.addEmployee}>Add Employee</button>
+                </div>
                 <div className="row">
                     <table className="table table-stripped table-bordered">
                         <thead>
@@ -50,4 +66,9 @@ class ListEmployeeComponent extends Component {
     }
 }
 
-export default ListEmployeeComponent;
+export default function(props) {
+    const navigate = useNavigate();
+    return <ListEmployeeComponent {...props} navigate={navigate} />;
+}
+
+//export default ListEmployeeComponent;
